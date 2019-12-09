@@ -1,6 +1,6 @@
 # Kill a process
 
-exec { 'restart_process':
-  command  => 'pkill -f killmenow',
-  provider => 'shell',
+exec { 'killmenow':
+  command  => '/usr/bin/pkill -f killmenow',
+  returns  => [0, 1],
 }
