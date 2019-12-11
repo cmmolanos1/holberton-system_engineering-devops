@@ -1,23 +1,6 @@
-#Install nginx, setup the index and setup the redirection
-
-package { 'nginx':
-  ensure => installed,
-  name   => 'nginx',
-}
-
-file { '/var/www/html/index.nginx-debian.html':
-  path    => '/var/www/html/index.nginx-debian.html',
-  content => 'Holberton School',
-}
-
-file_line { 'redirect':
-  ensure   => present,
-  path     => '/etc/nginx/sites-available/default',
-  after    => 'server_name _;',
-  line     => '\\\trewrite ^/redirect_me https://www.youtube.com permanent;',
-}
-
-service { 'nginx':
-  ensure  => running,
-  require => Package['nginx'],
+#!/usr/bin/env bash
+#puppet manifest to install a nginx server
+exec {'Install nginx':
+command  => 'sudo apt update && sudo apt -y install nginx && echo "Holberton School" | sudo tee /var/www/html/index.html && redirect="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n" && sudo sed -i "37i $redirect" /etc/nginx/sites-enabled/default && sudo service nginx restart',
+provider => shell,
 }
