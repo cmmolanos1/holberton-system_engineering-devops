@@ -10,7 +10,7 @@ file { '/var/www/html/index.nginx-debian.html':
   content => 'Holberton School',
 }
 
-file_line { 'title':
+file_line { 'redirect':
   ensure   => present,
   path     => '/etc/nginx/sites-available/default',
   after    => 'server_name _;',
