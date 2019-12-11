@@ -1,23 +1,24 @@
 #Install nginx, setup the index and setup the redirection
 
-package { 'install nginx':
+package { 'nginx':
   ensure => installed,
   name   => 'nginx',
 }
 
-file { 'modify index':
-  path    => '/var/www/html/index.nginx-debian.html',
+file { '/var/www/html/index.html':
   content => 'Holberton School',
+  path    => '/var/www/html/index.html'
 }
 
-file_line { 'add the redirection in config file':
-    ensure => present,
-    after  => 'server_name _;',
-    path   => '/etc/nginx/sites-available/default',
-    line   => '\\\trewrite ^/redirect_me https://www.youtube.com/ permanent;',
+file_line { 'title':
+  ensure   => present,
+  path     => '/etc/nginx/sites-available/default',
+  after    => 'server_name _;',
+  line     => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+  multiple => true
 }
 
-service {'start nginx':
-    ensure  => running,
-    require => Package['nginx'],
+service { 'nginx':
+  ensure  => running,
+  require => Package['nginx'],
 }
