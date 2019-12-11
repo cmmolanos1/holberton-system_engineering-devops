@@ -5,17 +5,16 @@ package { 'nginx':
   name   => 'nginx',
 }
 
-file { '/var/www/html/index.html':
+file { '/var/www/html/index.nginx-debian.html':
+  path    => '/var/www/html/index.nginx-debian.html',
   content => 'Holberton School',
-  path    => '/var/www/html/index.html'
 }
 
 file_line { 'title':
   ensure   => present,
   path     => '/etc/nginx/sites-available/default',
   after    => 'server_name _;',
-  line     => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
-  multiple => true
+  line     => 'rewrite ^/redirect_me https://www.youtube.com permanent;',
 }
 
 service { 'nginx':
