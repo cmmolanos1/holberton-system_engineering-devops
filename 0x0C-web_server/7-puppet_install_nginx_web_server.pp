@@ -1,6 +1,22 @@
 #!/usr/bin/env bash
-#puppet manifest to install a nginx server
+#Install nginx
+
 exec {'Install nginx':
-command  => 'sudo apt update && sudo apt -y install nginx && echo "Holberton School" | sudo tee /var/www/html/index.html && redirect="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n" && sudo sed -i "37i $redirect" /etc/nginx/sites-enabled/default && sudo service nginx restart',
-provider => shell,
+  command  => 'sudo apt-get -y update && sudo apt-get -y install nginx',
+  provider => shell,
+}
+
+exec {'Modify index':
+  command  => 'echo "Holberton School" > /var/www/html/index.nginx-debian.html',
+  provider => shell,
+}
+
+exec {'Modify configuration':
+  command  => 'new_string="\\\trewrite ^/redirect_me https://www.youtube.com/ permanent;" && sudo sed -i "42i $new_string" /etc/nginx/sites-available/default',
+  provider => shell,
+}
+
+exec {'Restart the server':
+  command  => 'sudo service nginx start',
+  provider => shell,
 }
