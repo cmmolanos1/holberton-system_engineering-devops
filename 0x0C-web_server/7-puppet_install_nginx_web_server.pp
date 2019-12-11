@@ -7,7 +7,7 @@ exec {'Install nginx':
 }
 
 exec {'Modify index':
-  command  => 'echo "Holberton School" > /var/www/html/index.nginx-debian.html',
+  command  => 'sudo echo "Holberton School" > /var/www/html/index.nginx-debian.html',
   provider => shell,
 }
 
