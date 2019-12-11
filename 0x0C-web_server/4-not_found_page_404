@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Install and setup redirection with nginX
 
-sudo apt-get update
-sudo apt-get install nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
 echo "Holberton School" > /var/www/html/index.nginx-debian.html
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
 new_string="\\\trewrite ^/redirect_me https://www.youtube.com/ permanent;"
