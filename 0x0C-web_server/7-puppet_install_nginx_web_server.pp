@@ -1,7 +1,7 @@
 #Install nginx, setup the index and setup the redirection
 
 package { 'install nginx':
-  ensure => 'installed',
+  ensure => installed,
   name   => 'nginx',
 }
 
@@ -11,7 +11,7 @@ file { 'modify index':
 }
 
 file_line { 'add the redirection in config file':
-    ensure => 'present',
+    ensure => present,
     after  => 'server_name _;',
     path   => '/etc/nginx/sites-available/default',
     line   => '\\\trewrite ^/redirect_me https://www.youtube.com/ permanent;',
