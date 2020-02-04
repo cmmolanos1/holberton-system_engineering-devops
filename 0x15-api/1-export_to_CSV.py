@@ -3,9 +3,10 @@
 Shows the complete tasks done by a specific employee ID
 """
 
+import csv
 import requests
 import sys
-import csv
+
 
 if __name__ == "__main__":
     # Get the todo list
