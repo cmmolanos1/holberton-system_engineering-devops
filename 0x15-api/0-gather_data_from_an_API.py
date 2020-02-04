@@ -26,7 +26,7 @@ if __name__ == "__main__":
         if task['completed'] is True:
             done.append(task)
 
-    print("Employee {} is done with tasks({}/{})".
+    print("Employee {} is done with tasks({}/{}):".
           format(user[0]['name'], len(done), len(todos)))
     if len(done) > 0:
         for task in done:
