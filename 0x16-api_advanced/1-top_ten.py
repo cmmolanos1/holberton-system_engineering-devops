@@ -9,7 +9,7 @@ def top_ten(subreddit):
         # Change the user agent
         headers = {'User-Agent': 'cmmolanos'}
         payload = {'t': 'all', 'limit': '10'}
-        request = requests.get('https://api.reddit.com/r/{}/top'.
+        request = requests.get('https://api.reddit.com/r/{}/hot'.
                                format(subreddit), headers=headers,
                                params=payload)
         top_posts = request.json()

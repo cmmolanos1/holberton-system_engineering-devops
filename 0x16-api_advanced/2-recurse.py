@@ -9,7 +9,7 @@ def recurse(subreddit, hot_list=[], after=""):
         # Change the user agent
         headers = {'User-Agent': 'cmmolanos'}
         payload = {'t': 'all', 'after': after}
-        request = requests.get('https://api.reddit.com/r/{}/top'.
+        request = requests.get('https://api.reddit.com/r/{}/hot'.
                                format(subreddit), headers=headers,
                                params=payload)
         top_posts = request.json()
