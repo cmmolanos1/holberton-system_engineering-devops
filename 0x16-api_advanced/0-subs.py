@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Find the number of subs"""
-from requests import get
+import requests
 
 
 def number_of_subscribers(subreddit):
@@ -9,8 +9,9 @@ def number_of_subscribers(subreddit):
         return 0
     # Change the user agent
     headers = {'User-Agent': 'cmmolanos'}
-    request = get('https://api.reddit.com/r/{}/about'.format(subreddit),
-                  headers=headers)
+    request = requests.get('https://api.reddit.com/r/{}/about'.
+                           format(subreddit),
+                           headers=headers)
     subscribers = request.json()
 
     sub = subscribers['data']['subscribers']
